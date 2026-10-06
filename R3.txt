@@ -1,0 +1,21 @@
+! R3 - Static Routing Lab
+enable
+configure terminal
+hostname R3
+!
+interface GigabitEthernet0/0
+ description LAN 40.0.0.0 (to SW3)
+ ip address 40.0.0.1 255.0.0.0
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description Link to R2
+ ip address 50.0.0.2 255.0.0.0
+ no shutdown
+!
+! Static routes (all go via R2 50.0.0.1)
+ip route 10.0.0.0 255.0.0.0 50.0.0.1
+ip route 20.0.0.0 255.0.0.0 50.0.0.1
+ip route 30.0.0.0 255.0.0.0 50.0.0.1
+end
+copy running-config startup-config
