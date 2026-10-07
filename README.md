@@ -14,7 +14,7 @@ A three-router lab where three separate LANs are connected through R1, R2 and R3
 
 ## Topology
 
-![Topology](topology.png)
+![Topology](images/topology.png)
 
 R1 and R2 are linked on 30.0.0.0. R2 and R3 are linked on 50.0.0.0.
 
@@ -135,7 +135,7 @@ R3(config)# end
 R3# copy running-config startup-config
 ```
 
-Ready-to-paste config files: [R1.txt](R1.txt), [R2.txt](R2.txt), [R3.txt](R3.txt).
+Ready-to-paste config files: [R1.txt](configs/R1.txt), [R2.txt](configs/R2.txt), [R3.txt](configs/R3.txt).
 
 ## Verification
 
@@ -147,7 +147,7 @@ show ip route
 show running-config | include ip route
 ```
 
-![R1 routing table](r1-ip-route.png)
+![R1 routing table](images/r1-ip-route.png)
 
 In `show ip route`, directly connected networks appear with the code **C** (and **L** for the router's own interface address) and static routes with the code **S**.
 
@@ -162,7 +162,7 @@ R1 routing table:
 
 R2 routing table:
 
-![R2 routing table](r2-ip-route.png)
+![R2 routing table](images/r2-ip-route.png)
 
 - **C** 20.0.0.0/8 (Gig0/0), 30.0.0.0/8 (Gig0/1) and 50.0.0.0/8 (Gig0/2) are directly connected
 - **S** 10.0.0.0/8 [1/0] via 30.0.0.1 (R1)
@@ -170,7 +170,7 @@ R2 routing table:
 
 R3 interface status and routing table:
 
-![R3 routing table](r3-ip-route.png)
+![R3 routing table](images/r3-ip-route.png)
 
 - `show ip interface brief` shows Gig0/0 (40.0.0.1) and Gig0/1 (50.0.0.2) both **up/up**
 - **C** 40.0.0.0/8 (Gig0/0) and 50.0.0.0/8 (Gig0/1) are directly connected
@@ -189,7 +189,7 @@ Path: `PC0 -> SW1 -> R1 -> R2 -> R3 -> SW3 -> PC4`
 C:\> ping 40.0.0.2
 ```
 
-![PC0 to PC4 ping](ping-pc0-to-pc4.png)
+![PC0 to PC4 ping](images/ping-pc0-to-pc4.png)
 
 Result:
 
@@ -215,7 +215,7 @@ Path: `PC0 -> SW1 -> R1 -> R2 -> SW2 -> PC2`
 C:\> ping 20.0.0.2
 ```
 
-![PC0 to PC2 ping](ping-pc0-to-pc2.png)
+![PC0 to PC2 ping](images/ping-pc0-to-pc2.png)
 
 Result:
 
@@ -233,7 +233,7 @@ Path: `PC0 -> SW1 -> R1 -> R2 -> R3 -> SW3 -> PC5`
 C:\> ping 40.0.0.3
 ```
 
-![PC0 to PC5 ping](ping-pc0-to-pc5.png)
+![PC0 to PC5 ping](images/ping-pc0-to-pc5.png)
 
 Result: 1 request timed out (ARP delay) and 3 replies came back (3/4 received). **TTL = 125** again confirms the packet crossed 3 routers (R1, R2 and R3).
 
@@ -277,16 +277,18 @@ All three LANs can reach each other. The routing tables on R1, R2 and R3 contain
 .
 ├── README.md
 ├── Static-Routing-Lab.pkt
-├── R1.txt
-├── R2.txt
-├── R3.txt
-├── topology.png
-├── r1-ip-route.png
-├── r2-ip-route.png
-├── r3-ip-route.png
-├── ping-pc0-to-pc4.png
-├── ping-pc0-to-pc2.png
-└── ping-pc0-to-pc5.png
+├── configs/
+│   ├── R1.txt
+│   ├── R2.txt
+│   └── R3.txt
+└── images/
+    ├── topology.png
+    ├── r1-ip-route.png
+    ├── r2-ip-route.png
+    ├── r3-ip-route.png
+    ├── ping-pc0-to-pc4.png
+    ├── ping-pc0-to-pc2.png
+    └── ping-pc0-to-pc5.png
 ```
 
 ## Tools
